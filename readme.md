@@ -17,12 +17,25 @@ optional arguments:
                         Type of DNS Record to perform an action on
   --host HOST, -H HOST  Domain name to perform an action on
   --id ID, -i ID        Record ID to perform an action on
-</pre>
+
 
 Basic Commands:<br>
-<strong>Lists Zones you Control</strong> : python cloudflareapi.py -a list<br>
-<strong>Create a new Zone</strong> : python cloudflareapi.py -d example.xyz -a create<br>
-<strong>List DNS For a Zone</strong> : python cloudflareapi.py -d example.xyz -a list<br>
-<strong>Create a New DNS Record For a Zone</strong> : python cloudflareapi.py -d example.xyz -a add -r <RECORD_TYPE> -H <HOST> -c <RECORD_CONTENT><br>
-<strong>Edit an Existing DNS Record For a Zone</strong> : python cloudflareapi.py -d example.xyz -a modify -r <RECORD_TYPE> -H <HOST> -c <RECORD_CONTENT><br>
-<strong>Delete an Existing DNS Record From a Zone</strong> : python cloudflareapi.py -d example.xyz -a delete -H <HOST><br>
+<strong>Lists Zones you Control</strong> 
+	#python cloudflareapi.py -a list
+<strong>Create a new Zone</strong>
+	#python cloudflareapi.py -d example.xyz -a create
+<strong>List DNS For a Zone</strong> 
+	#python cloudflareapi.py -d example.xyz -a list
+<strong>Create a New DNS Record For a Zone</strong> 
+	#python cloudflareapi.py -d example.xyz -a add -r <RECORD_TYPE> -H <HOST> -c <RECORD_CONTENT>
+<strong>Edit an Existing DNS Record For a Zone</strong> 
+	#python cloudflareapi.py -d example.xyz -a modify -r <RECORD_TYPE> -H <HOST> -c <RECORD_CONTENT>
+<strong>Delete an Existing DNS Record From a Zone</strong> 
+	#python cloudflareapi.py -d example.xyz -a delete -H <HOST>
+
+
+Requirements:
+	* Python requests library (https://pypi.python.org/pypi/requests#downloads)
+	* Cloudflare API Credentials
+
+</pre>
