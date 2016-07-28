@@ -37,5 +37,5 @@ Basic Commands:<br>
 Requirements:
 	* Python requests library (https://pypi.python.org/pypi/requests#downloads)
 	* Cloudflare API Credentials
-
+ 
 </pre>
