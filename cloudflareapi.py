@@ -1,13 +1,30 @@
 # Cloudflare Api
 # Ron Egli - Github.com/smugzombie
-# Version 0.8
+# Version 0.9
 
-import requests, json, argparse
+import requests, json, argparse, ConfigParser, os
 
 auth_email = ""
 auth_key = ""
 api_url = "https://api.cloudflare.com/client/v4"
-headers = { 'x-auth-email': auth_email, 'x-auth-key': auth_key, 'content-type': "application/json", 'cache-control': "no-cache" }
+headers = ""
+
+def readConfig():
+	global auth_email, auth_key, headers
+	config = ConfigParser.RawConfigParser()
+	if os.path.exists("config.ini"):
+		config.read("config.ini")
+		auth_email = config.get('Credentials', 'auth_email')
+		auth_key = config.get('Credentials', 'auth_key')
+	else:
+		config.add_section('Credentials')
+		config.set('Credentials','auth_email',"")
+		config.set('Credentials','auth_key',"")
+		with open("config.ini", 'wb') as configfile:
+			config.write(configfile)
+		print "Credentials Required: Please update config.ini."
+		exit()
+	headers = { 'x-auth-email': auth_email, 'x-auth-key': auth_key, 'content-type': "application/json", 'cache-control': "no-cache" }
 
 def listDNSZones(page=1):
 	url = "/zones?per_page=50&page=" + str(page)
@@ -134,7 +151,7 @@ def getZoneId(domain):
 		exit()
 
 ########### MAIN ###########
-
+readConfig()
 arguments = argparse.ArgumentParser()
 arguments.add_argument('--domain','-d', help="Domain name to perform an action on", required=False, default="")
 arguments.add_argument('--action','-a', help="Action to perform", required=False, default="list")
